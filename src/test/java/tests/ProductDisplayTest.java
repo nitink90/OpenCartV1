@@ -12,7 +12,7 @@ public class ProductDisplayTest extends BaseLibrary{
 	@BeforeTest
 	public void launchurl()
 	{
-		launchUrl();
+		launchUrl("stagingUrl");
 		ob = new ProductDisplayPage();
 	}
 	
