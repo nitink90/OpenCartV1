@@ -1,15 +1,20 @@
 package baseLibrary;
 
 import java.io.FileInputStream;
+import java.time.Duration;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import propertyUtility.PropertyUtility;
+import waitUtility.WaitUtility;
 
-public class BaseLibrary implements PropertyUtility{
+public class BaseLibrary implements PropertyUtility, WaitUtility{
 	public static WebDriver driver = null;
 	
 	public void launchUrl(String key)
@@ -33,6 +38,13 @@ public class BaseLibrary implements PropertyUtility{
 			System.out.println("Issue in get read data : " + e);
 		}
 		return val;
+	}
+
+	@Override
+	public void waitForClick(WebElement ele) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.elementToBeClickable(ele));
+		
 	}
 
 }
